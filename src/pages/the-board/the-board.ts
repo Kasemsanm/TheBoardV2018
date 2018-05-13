@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SystemProvider } from '../../providers/system/system';
 
 /**
  * Generated class for the TheBoardPage page.
@@ -15,11 +16,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TheBoardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private system:SystemProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TheBoardPage');
+  }
+  
+  ionViewWillEnter() {
+    return this.system.Authentication();
   }
 
 }
