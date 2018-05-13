@@ -1,0 +1,14 @@
+<!-- Generated template for the ToDosComponent component -->
+<ion-card>
+  <div class="todo-list">
+    <ion-card-header> Looper Admin Theme ({{sizeDone}}/{{sizeAll}}) </ion-card-header>
+    <div *ngFor="let item of items" class="todo">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="todo{{item}}">
+        <label class="custom-control-label" for="todo{{item}}">Ride a roller coaster {{item}} —
+          <span class="text-red small">Overdue in 3 days</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</ion-card>

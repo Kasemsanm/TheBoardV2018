@@ -28,15 +28,11 @@
 
   <div [ngSwitch]="pet">
     <ion-list *ngSwitchCase="'To-Dos'">
-      <ion-item>
-        <ion-label>Daenerys Targaryen</ion-label>
-        <ion-checkbox color="dark" checked="true"></ion-checkbox>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Arya Stark</ion-label>
-        <ion-checkbox disabled="true"></ion-checkbox>
-      </ion-item>
+        <to-dos></to-dos>  
+        <to-dos></to-dos>  
+        <to-dos></to-dos>  
+        <to-dos></to-dos>  
+        <to-dos></to-dos>
     </ion-list>
 
     <ion-list *ngSwitchCase="'Tasks'">

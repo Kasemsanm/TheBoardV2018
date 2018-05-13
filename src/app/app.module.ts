@@ -11,6 +11,7 @@ import { SingupPage } from '../pages/singup/singup';
 import { SystemProvider } from '../providers/system/system';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { ToDosComponent } from '../components/to-dos/to-dos';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     TheBoardPage,
     SinginPage,
     SingupPage,
-    ProgressBarComponent
+    ProgressBarComponent,
+    ToDosComponent
   ],
   imports: [
     BrowserModule,
