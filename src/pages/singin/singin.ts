@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SystemProvider } from '../../providers/system/system';
+import { TheBoardPage } from '../the-board/the-board';
 
 /**
  * Generated class for the SinginPage page.
@@ -15,11 +17,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SinginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private system:SystemProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SinginPage');
+    if(this.system.Authentication()) this.navCtrl.setRoot(TheBoardPage);
+  }
+
+  Singin(){
+    this.system.Singin();
+    this.navCtrl.setRoot(TheBoardPage);
   }
 
 }

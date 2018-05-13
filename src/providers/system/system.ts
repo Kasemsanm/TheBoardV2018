@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { SinginPage } from '../../pages/singin/singin';
 
 /*
   Generated class for the SystemProvider provider.
@@ -13,7 +11,7 @@ import { SinginPage } from '../../pages/singin/singin';
 export class SystemProvider {
 
   auth = false;
-  constructor(public http: HttpClient,private navCtrl:NavController) {
+  constructor(public http: HttpClient) {
     console.log('Hello SystemProvider Provider');
   }
 
@@ -30,9 +28,6 @@ export class SystemProvider {
   }
 
   Authentication(){
-    if(!this.auth){
-      this.navCtrl.setRoot(SinginPage)
-    }
     return this.auth;
   }
 
