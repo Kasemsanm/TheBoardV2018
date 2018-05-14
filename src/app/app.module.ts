@@ -21,6 +21,7 @@ import { AngularFireAuthModule } from 'angularfire2/Auth';
 import { FormsModule } from '@angular/forms';
 import { SingoutPage } from '../pages/singout/singout';
 import { AddToDoPage } from '../pages/add-to-do/add-to-do';
+import { AddProjectPage } from '../pages/add-project/add-project';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddToDoPage } from '../pages/add-to-do/add-to-do';
     TaskComponent,
     ProjectsPage,
     SingoutPage,
-    AddToDoPage
+    AddToDoPage,
+    AddProjectPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { AddToDoPage } from '../pages/add-to-do/add-to-do';
     SingupPage,
     ProjectsPage,
     SingoutPage,
-    AddToDoPage
+    AddToDoPage,
+    AddProjectPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/Auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ToDos } from '../../pages/add-to-do/add-to-do';
+import { ProjectItem } from '../../pages/add-project/add-project';
 /*
   Generated class for the SystemProvider provider.
 
@@ -49,48 +51,50 @@ export class SystemProvider {
     return this.Lock;
   }
 
-  GetToDos(){
-    return this.db.list("Users/"+this.UID+"ToDos/");
+  async GetToDos(){
+    return await this.db.list("Users/"+this.UID+"/ToDos/").valueChanges()
   }
 
   GetTasks(){
-    return this.db.list("Users/"+this.UID+"Tasks/");
+    return this.db.list("Users/"+this.UID+"/Tasks/").valueChanges();
   }
 
   GetProjects(){
-    return this.db.list("Users/"+this.UID+"Projects/");
+    return this.db.list("Project/").valueChanges();
   }
 
   GetProject(PID:string){
-    return this.db.list("Project/"+PID);
+    return this.db.list("Project/"+PID).valueChanges();
   }
 
-  AddToDo(item:any){
-    this.db.list("Users/"+this.UID+"ToDos/").push(item);
+  AddToDo(item:ToDos){
+    this.db.list("Users/"+this.UID+"/ToDos/").push(item);
   }
 
   AddTask(item:any){
-    this.db.list("Users/"+this.UID+"Tasks/").push(item);
+    this.db.list("Users/"+this.UID+"/Tasks/").push(item);
   }
 
   AddProjects(item:any){
-    this.db.list("Users/"+this.UID+"Projects/").push(item);
+    this.db.list("Users/"+this.UID+"/Projects/").push(item);
   }
 
-  AddProject(item:any){
-    this.db.list("Project/").push(item);
+  AddProject(item:ProjectItem){
+    return this.db.list("Project/").push(item).then((success) => {
+      this.AddProjects({key:success.key});
+    });
   }
 
   UpdateToDo(ToDoID:string,item:any){
-    this.db.list("Users/"+this.UID+"ToDos/").update(item,ToDoID);
+    this.db.list("Users/"+this.UID+"/ToDos/").update(item,ToDoID);
   }
 
   UpdateTask(TaskID:string,item:any){
-    this.db.list("Users/"+this.UID+"Tasks/").update(item,TaskID);
+    this.db.list("Users/"+this.UID+"/Tasks/").update(item,TaskID);
   }
 
   UpdateProjects(PID:string,item:any){
-    this.db.list("Users/"+this.UID+"Projects/").update(item,PID);
+    this.db.list("Users/"+this.UID+"/Projects/").update(item,PID);
   }
 
   UpdateProject(PID:string,item:any){

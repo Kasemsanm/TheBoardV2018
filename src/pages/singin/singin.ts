@@ -30,7 +30,7 @@ export class SinginPage {
   Singin(acount:NgForm){
     this.system.Singin(acount.value['Email'],acount.value['Password']).then(
       (success) => {
-        this.viewCtrl.dismiss();
+        this.navCtrl.setRoot(TheBoardPage);
         this.system.Authenticated = true;
       }).catch(
         (err) => {

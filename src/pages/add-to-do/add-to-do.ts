@@ -10,9 +10,16 @@ import { SystemProvider } from '../../providers/system/system';
  */
 
 export class ToDo{
+  $key:string;
   todo:string;
   deadline:Number;
   check:string = "flase"
+}
+
+export class ToDos{
+  $key:string;
+  Title:string;
+  ToDo:ToDo[];
 }
 
 @IonicPage()
@@ -44,10 +51,10 @@ export class AddToDoPage {
   }
 
   SaveToDos(){
-    this.system.AddToDo({
-      Title : this.Title,
-      ToDos : this.Todos
-    });
+    let temp = new ToDos();
+    temp.Title = this.Title;
+    temp.ToDo = this.Todos;
+    this.system.AddToDo(temp);
     this.dismiss();
   }
 

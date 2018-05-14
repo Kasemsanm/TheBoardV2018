@@ -23,7 +23,7 @@
       <button ion-fab (click)="AddToDo()">
         <ion-icon name="md-clipboard"></ion-icon>
       </button>
-      <button ion-fab>
+      <button ion-fab (click)="AddProject()">
         <ion-icon name="md-git-network"></ion-icon>
       </button>
     </ion-fab-list>
@@ -41,11 +41,23 @@
 
   <div [ngSwitch]="TheBoard">
     <ion-list *ngSwitchCase="'To-Dos'">
-      <to-dos></to-dos>
-      <to-dos></to-dos>
-      <to-dos></to-dos>
-      <to-dos></to-dos>
-      <to-dos></to-dos>
+      <ion-item *ngFor="let item of ListToDos | async">
+        <ion-card>
+          <div class="todo-list">
+            <ion-card-header> {{item.Title}}</ion-card-header>
+            <ion-card-content>
+              <div class="todo" *ngFor="let item2 of item.ToDo; let i = index">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id='todo{{item.Title.replace(" ","")+i}}'>
+                  <label class="custom-control-label" for='todo{{item.Title.replace(" ","")+i}}'> {{item2.todo}}
+                    <span class="text-red small"></span>
+                  </label>
+                </div>
+              </div>
+            </ion-card-content>
+          </div>
+        </ion-card>
+      </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'Tasks'">

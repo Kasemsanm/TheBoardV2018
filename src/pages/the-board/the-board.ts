@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SystemProvider } from '../../providers/system/system';
 import { SinginPage } from '../singin/singin';
 import { ModalController } from 'ionic-angular';
-import { AddToDoPage } from '../add-to-do/add-to-do';
+import { AddToDoPage, ToDo, ToDos } from '../add-to-do/add-to-do';
+import { AddProjectPage } from '../add-project/add-project';
 
 /**
  * Generated class for the TheBoardPage page.
@@ -17,21 +18,36 @@ import { AddToDoPage } from '../add-to-do/add-to-do';
   selector: 'page-the-board',
   templateUrl: 'the-board.html',
 })
+
+
 export class TheBoardPage {
   loadProgress = 50;
+  ListToDos:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private system: SystemProvider, private ModalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
+    
     if (!this.system.Authenticated) {
-      //let modal = this.ModalCtrl.create(SinginPage,null,{enableBackdropDismiss:false});
-      //modal.present();
+      //this.navCtrl.setRoot(SinginPage,null);
     }
+    else{
+    }
+    this.GetToDos();
   }
 
   AddToDo() {
     let modal = this.ModalCtrl.create(AddToDoPage);
     modal.present();
+  }
+
+  AddProject() {
+    let modal = this.ModalCtrl.create(AddProjectPage);
+    modal.present();
+  }
+
+  async GetToDos() {
+    this.ListToDos = await this.system.GetToDos();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 /**
  * Generated class for the ToDosComponent component.
@@ -12,11 +12,14 @@ import { Component } from '@angular/core';
 })
 export class ToDosComponent {
 
-  sizeDone = 1;
-  sizeAll = 4;
-  items = [1,2,3,4,5,6,7,8,9];
-
+  sizeDone = 0;
+  sizeAll = 0;
+  @Input('items') items;
   constructor() {
+  }
+
+  ionViewDidLoad() {
+    console.log(this.items);
   }
 
 }

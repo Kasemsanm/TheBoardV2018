@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SystemProvider } from '../../providers/system/system';
-import { SinginPage } from '../singin/singin';
+import { TheBoardPage } from '../the-board/the-board';
 
 /**
  * Generated class for the SingoutPage page.
@@ -24,7 +24,7 @@ export class SingoutPage {
     this.system.Singout().then(
       (success) => {
         this.system.Authenticated = false;
-        this.navCtrl.setRoot(SinginPage);
+        this.navCtrl.setRoot(TheBoardPage);
       }).catch(
         (err) => {
           this.error = err;
