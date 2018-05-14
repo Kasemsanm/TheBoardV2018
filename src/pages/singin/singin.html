@@ -14,11 +14,11 @@
 
 
 <ion-content padding>
-  <form #logupForm="ngForm" (ngSubmit)="Singup(logupForm)">
+  <form #loginForm="ngForm" (ngSubmit)="Singin(loginForm)">
     <ion-list>
 
       <ion-item>
-        <ion-input [(ngModel)]="Email" name="Email" type="email" placeholder="Email" aria-required="true"></ion-input>
+        <ion-input [(ngModel)]="Email" name="Email" type="text" placeholder="Email" aria-required="true"></ion-input>
       </ion-item>
 
       <ion-item>
