@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,6 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { ToDosComponent } from '../components/to-dos/to-dos';
 import { TaskComponent } from '../components/task/task';
+import { ProjectsPage } from '../pages/projects/projects';
+import { FirebaseConfig } from './firebase.config';
+import { AngularFireAuthModule } from 'angularfire2/Auth';
+import { FormsModule } from '@angular/forms';
+import { SingoutPage } from '../pages/singout/singout';
+import { AddToDoPage } from '../pages/add-to-do/add-to-do';
 
 @NgModule({
   declarations: [
@@ -22,12 +30,19 @@ import { TaskComponent } from '../components/task/task';
     SingupPage,
     ProgressBarComponent,
     ToDosComponent,
-    TaskComponent
+    TaskComponent,
+    ProjectsPage,
+    SingoutPage,
+    AddToDoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(FirebaseConfig),
+    AngularFireAuthModule,
+    FormsModule,
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,6 +50,9 @@ import { TaskComponent } from '../components/task/task';
     TheBoardPage,
     SinginPage,
     SingupPage,
+    ProjectsPage,
+    SingoutPage,
+    AddToDoPage
   ],
   providers: [
     StatusBar,

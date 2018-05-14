@@ -4,9 +4,9 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SinginPage } from '../pages/singin/singin';
-import { SingupPage } from '../pages/singup/singup';
 import { TheBoardPage } from '../pages/the-board/the-board';
+import { ProjectsPage } from '../pages/projects/projects';
+import { SingoutPage } from '../pages/singout/singout';
 
 
 @Component({
@@ -29,9 +29,9 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Singin', component: SinginPage },
-      { title: 'Singup', component: SingupPage },
-      { title: 'The Board', component: TheBoardPage }
+      { title: 'The Board', component: TheBoardPage },
+      { title: 'Projects', component: ProjectsPage },
+      { title: 'Singout', component: SingoutPage }
     ];
   }
 

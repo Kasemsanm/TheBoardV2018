@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { AngularFireAuth } from 'angularfire2/Auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 /*
   Generated class for the SystemProvider provider.
 
@@ -9,26 +10,90 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class SystemProvider {
-
-  auth = false;
-  constructor(public http: HttpClient) {
-    console.log('Hello SystemProvider Provider');
+  Authenticated = false;
+  Lock = false;
+  email:any;
+  password:any;
+  UID:any;
+  constructor(public http: HttpClient, private afAuth:AngularFireAuth, private db: AngularFireDatabase) {
+    this.afAuth.authState.subscribe(
+      (user) => {
+        this.UID = user.uid
+      });
   }
 
-  Singin(){
-    this.auth = true;
+  Singin(email:string,password:string){
+    return this.afAuth.auth.signInWithEmailAndPassword(email,password);
   }
 
-  Singup(){
-    
+  Singup(email:string,password:string){
+    return this.afAuth.auth.createUserWithEmailAndPassword(email,password);
+  }
+
+  UnLockScreen(password:string){
+    if(password == this.password){
+      this.Lock = false;
+      return true;
+    }
+    else{
+      this.Lock = true;
+      return false;
+    }
   }
 
   Singout(){
-    this.auth = false;
+    return this.afAuth.auth.signOut();
   }
 
-  Authentication(){
-    return this.auth;
+  LockScreen(){
+    return this.Lock;
   }
 
+  GetToDos(){
+    return this.db.list("Users/"+this.UID+"ToDos/");
+  }
+
+  GetTasks(){
+    return this.db.list("Users/"+this.UID+"Tasks/");
+  }
+
+  GetProjects(){
+    return this.db.list("Users/"+this.UID+"Projects/");
+  }
+
+  GetProject(PID:string){
+    return this.db.list("Project/"+PID);
+  }
+
+  AddToDo(item:any){
+    this.db.list("Users/"+this.UID+"ToDos/").push(item);
+  }
+
+  AddTask(item:any){
+    this.db.list("Users/"+this.UID+"Tasks/").push(item);
+  }
+
+  AddProjects(item:any){
+    this.db.list("Users/"+this.UID+"Projects/").push(item);
+  }
+
+  AddProject(item:any){
+    this.db.list("Project/").push(item);
+  }
+
+  UpdateToDo(ToDoID:string,item:any){
+    this.db.list("Users/"+this.UID+"ToDos/").update(item,ToDoID);
+  }
+
+  UpdateTask(TaskID:string,item:any){
+    this.db.list("Users/"+this.UID+"Tasks/").update(item,TaskID);
+  }
+
+  UpdateProjects(PID:string,item:any){
+    this.db.list("Users/"+this.UID+"Projects/").update(item,PID);
+  }
+
+  UpdateProject(PID:string,item:any){
+    this.db.list("Project/").update(item,PID);
+  }
 }

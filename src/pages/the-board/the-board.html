@@ -15,8 +15,21 @@
 
 
 <ion-content padding>
+  <ion-fab right bottom>
+    <button ion-fab color="dark">
+      <ion-icon name="md-add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="AddToDo()">
+        <ion-icon name="md-clipboard"></ion-icon>
+      </button>
+      <button ion-fab>
+        <ion-icon name="md-git-network"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
   <div padding>
-    <ion-segment [(ngModel)]="pet">
+    <ion-segment [(ngModel)]="TheBoard">
       <ion-segment-button value="To-Dos">
         To-Dos
       </ion-segment-button>
@@ -26,13 +39,13 @@
     </ion-segment>
   </div>
 
-  <div [ngSwitch]="pet">
+  <div [ngSwitch]="TheBoard">
     <ion-list *ngSwitchCase="'To-Dos'">
-        <to-dos></to-dos>  
-        <to-dos></to-dos>  
-        <to-dos></to-dos>  
-        <to-dos></to-dos>  
-        <to-dos></to-dos>
+      <to-dos></to-dos>
+      <to-dos></to-dos>
+      <to-dos></to-dos>
+      <to-dos></to-dos>
+      <to-dos></to-dos>
     </ion-list>
 
     <ion-list *ngSwitchCase="'Tasks'">
