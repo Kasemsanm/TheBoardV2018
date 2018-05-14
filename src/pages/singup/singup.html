@@ -14,5 +14,24 @@
 
 
 <ion-content padding>
-
+    <form #loginForm="ngForm" (ngSubmit)="Singin(loginForm)">
+        <ion-list>
+    
+          <ion-item>
+            <ion-input [(ngModel)]="Email" name="Email" type="email" placeholder="Email" aria-required="true"></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-input [(ngModel)]="Password" name="Password" type="password" placeholder="Password" aria-required="true"></ion-input>
+          </ion-item>
+    
+        </ion-list>
+    
+        <div padding>
+          <button ion-button outline block type="submit">Sign up</button>
+        </div>
+        <div padding>
+            <button ion-button outline block (click)="GotoSingIn()">Sign in</button>
+          </div>
+      </form>
 </ion-content>

@@ -20,7 +20,8 @@ export class SystemProvider {
   constructor(public http: HttpClient, private afAuth:AngularFireAuth, private db: AngularFireDatabase) {
     this.afAuth.authState.subscribe(
       (user) => {
-        this.UID = user.uid
+        if(user)
+          this.UID = user.uid
       });
   }
 

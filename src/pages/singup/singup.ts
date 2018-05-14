@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { SystemProvider } from '../../providers/system/system';
+import { TheBoardPage } from '../the-board/the-board';
+import { NgForm } from '@angular/forms';
+import { SinginPage } from '../singin/singin';
 
 /**
  * Generated class for the SingupPage page.
@@ -14,12 +18,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'singup.html',
 })
 export class SingupPage {
+  error: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private system:SystemProvider,public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SingupPage');
+    if(this.system.Authenticated) this.navCtrl.setRoot(TheBoardPage);
+  }
+
+  Singup(acount:NgForm){
+    this.system.Singup(acount.value['Email'].toString() ,acount.value['Password'].toString() ).then(
+      (success) => {
+        this.navCtrl.setRoot(SinginPage);
+      }).catch(
+        (err) => {
+          this.error = err;
+          console.log(err);
+        })    
+  }
+
+  GotoSingIn(){
+    this.navCtrl.setRoot(SinginPage);
   }
 
 }

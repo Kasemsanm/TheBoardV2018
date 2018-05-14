@@ -29,7 +29,7 @@ export class TheBoardPage {
   ionViewDidLoad() {
     
     if (!this.system.Authenticated) {
-      //this.navCtrl.setRoot(SinginPage,null);
+      this.navCtrl.setRoot(SinginPage,null);
     }
     else{
     }

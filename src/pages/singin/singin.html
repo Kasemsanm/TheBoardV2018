@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <form #loginForm="ngForm" (ngSubmit)="Singin(loginForm)">
+  <form #logupForm="ngForm" (ngSubmit)="Singup(logupForm)">
     <ion-list>
 
       <ion-item>
@@ -30,5 +30,8 @@
     <div padding>
       <button ion-button outline block type="submit">Sign In</button>
     </div>
+    <div padding>
+        <button ion-button outline block (click)="GotoSingUp()">Sign Up</button>
+      </div>
   </form>
 </ion-content>

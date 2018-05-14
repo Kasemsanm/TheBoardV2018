@@ -4,6 +4,7 @@ import { SystemProvider } from '../../providers/system/system';
 import { TheBoardPage } from '../the-board/the-board';
 import { NgForm } from '@angular/forms'
 import { ModalController, ViewController } from 'ionic-angular';
+import { SingupPage } from '../singup/singup';
 
 /**
  * Generated class for the SinginPage page.
@@ -37,6 +38,10 @@ export class SinginPage {
           this.error = err;
           console.log(err);
         })    
+  }
+
+  GotoSingUp(){
+    this.navCtrl.setRoot(SingupPage);
   }
 
 }
